@@ -8,7 +8,7 @@ go_library(
     deps = [
         "//protos/hello",
         "//services/hello/server",
-        "@com_github_jessevdk_go_flags//:go_default_library",
+        "@com_github_jessevdk_go_flags//:go-flags",
         "@org_golang_google_grpc//:go_default_library",
     ],
 )
