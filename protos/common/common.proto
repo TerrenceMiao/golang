@@ -1,0 +1,10 @@
+syntax = "proto3";
+package common;
+option go_package = "github.com/terrencemiao/golang/protos/common";
+
+message BogusRequest {
+};
+
+message BogusResponse {
+    string error = 1;
+};

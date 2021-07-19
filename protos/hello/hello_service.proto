@@ -1,0 +1,11 @@
+syntax = "proto3";
+package hello;
+option go_package = "github.com/terrencemiao/golang/protos/hello";
+
+import "protos/hello/hello.proto";
+import "protos/common/common.proto";
+
+service Hello {
+    rpc Greet(hello.GreetingRequest) returns (hello.GreetingResponse);
+    rpc Bogus(common.BogusRequest) returns (common.BogusResponse);
+}

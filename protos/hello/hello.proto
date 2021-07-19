@@ -1,0 +1,11 @@
+syntax = "proto3";
+package hello;
+option go_package = "github.com/terrencemiao/golang/protos/hello";
+
+message GreetingRequest {
+    string name = 1;
+};
+
+message GreetingResponse {
+    string greeting = 1;
+};
