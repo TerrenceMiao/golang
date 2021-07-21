@@ -141,6 +141,24 @@ INFO: Build completed successfully, 1 total action
 2021/07/17 20:06:03 Setting proxy server port 8082
 ```
 
+Testing
+-------
+
+Error thrown when run:
+
+```
+𝜆 bazel test //...
+...
+ERROR: golang/src/services/hello/server/BUILD.bazel:14:8: no such package '@com_github_stretchr_testify//require': The repository '@com_github_stretchr_testify' could not be resolved and referenced by '//services/hello/server:server_test'
+...
+```
+
+Solution fix this issue:
+
+```
+𝜆 bazel run //:gazelle -- update-repos github.com/stretchr/testify
+```
+
 Publishing a module
 -------------------
 

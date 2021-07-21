@@ -24,13 +24,26 @@ http_archive(
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
+go_repository(
+    name = "com_github_stretchr_testify",
+    importpath = "github.com/stretchr/testify",
+    sum = "h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=",
+    version = "v1.7.0",
+)
+
+go_repository(
+    name = "in_gopkg_yaml_v3",
+    importpath = "gopkg.in/yaml.v3",
+    sum = "h1:h8qDotaEPuJATrMmW04NCwg7v22aHH28wwpauUhK9Oo=",
+    version = "v3.0.0-20210107192922-496545a6307b",
+)
+
 # Declare indirect dependencies and register toolchains
 go_rules_dependencies()
 
 go_register_toolchains(version = "1.16.5")
 
 gazelle_dependencies()
-
 
 load("//:go_third_party.bzl", "go_deps")
 # Declare Go direct dependencies
@@ -57,7 +70,6 @@ go_repository(
 
 # gazelle:repository_macro go_third_party.bzl%go_deps
 go_deps()
-
 
 http_archive(
     name = "com_google_protobuf",
