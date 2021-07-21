@@ -4,7 +4,9 @@ Golang
 Golang Interactive Playground
 -----------------------------
 
-Let' get start.
+`Bazel` is designed to work at scale and supports incremental hermetic builds across a distributed infrastructure, which is necessary for large codebase. With **Bazel Go ruleset**, you are able to manage the Go toolchain and external libraries without depending on locally installed ones. 
+
+`Gazelle` is used to generate Go and Protocol Buffers rules. With `Gazelle`, you are able to generate `Bazel` rules for most Go packages in our Go monorepo with minimal human input. `Gazelle` can also import the versions of Go modules into **Bazel rules** so we can conveniently and efficiently build external libraries. 
 
 ```
 𝜆 git clone https://github.com/terrencemiao/golang src
@@ -186,3 +188,4 @@ Reference
 ---------
 
 - How to Golang Monorepo, _https://medium.com/goc0de/how-to-golang-monorepo-4f62320a01fd_
+- Go rules for Bazel, _https://github.com/bazelbuild/rules_go_
