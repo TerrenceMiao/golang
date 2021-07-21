@@ -75,6 +75,15 @@ which tells `bazel` to run the `gazelle` target specified in the `BUILD` file. T
 13 directories, 24 files
 ```
 
+In addition, `*.pb.go` artefact files also generated:
+
+```
+𝜆 find bazel-out/ -name "*.pb.go"
+bazel-out//darwin-fastbuild/bin/protos/common/common_go_proto_/github.com/terrencemiao/golang/protos/common/common.pb.go
+bazel-out//darwin-fastbuild/bin/protos/hello/hello_go_proto_/github.com/terrencemiao/golang/protos/hello/hello_service.pb.go
+bazel-out//darwin-fastbuild/bin/protos/hello/hello_go_proto_/github.com/terrencemiao/golang/protos/hello/hello.pb.go
+```
+
 Now, inform `bazel` about the dependencies mentioned in `go.mod` file. Either:
 
 ```
