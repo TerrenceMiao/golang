@@ -19,6 +19,6 @@ func (h *Server) Greet(ctx context.Context, req *pbh.GreetingRequest) (*pbh.Gree
 
 func (h *Server) Bogus(ctx context.Context, req *pbc.BogusRequest) (*pbc.BogusResponse, error) {
 	return &pbc.BogusResponse{
-		Error: fmt.Sprintf("Bogus!!!"),
+		Error: fmt.Sprintf("Bogus, %s", "thing go wrong!!!"),
 	}, nil
 }
