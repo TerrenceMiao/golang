@@ -1,24 +1,44 @@
 package server
 
 import (
+	"context"
 	"fmt"
-	"io/ioutil"
-	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	pbh "github.com/terrencemiao/golang/protos/hello"
 )
 
 func TestHello(t *testing.T) {
-	srv := New(1123)
-	req := httptest.NewRequest("GET", "http://example.com/hello", nil)
-	w := httptest.NewRecorder()
-	srv.sayHello(w, req)
+	srv := Server{}
 
-	resp := w.Result()
-	body, _ := ioutil.ReadAll(resp.Body)
+	parameters := []struct{
+		name string
+		want string
+	} {
+		{
+			name: "world",
+			want: "Hello world",
+		},
+		{
+			name: "Mark",
+			want: "Hello Mark",
+		},
+	}
 
-	fmt.Println(resp.StatusCode)
-	fmt.Println(resp.Header.Get("Content-Type"))
-	require.EqualValues(t, "Hello!!", string(body))
+	for _, parameter := range parameters {
+		req := &pbh.GreetingRequest{Name: parameter.name}
+
+		resp, err := srv.Greet(context.Background(), req)
+
+		if err != nil {
+			t.Errorf("Greet(%v) got unexpected error", parameter.name)
+		}
+		
+		fmt.Println(resp.Greeting)
+		require.EqualValues(t, parameter.want, resp.Greeting)
+		if parameter.want != resp.Greeting {
+			t.Errorf("Great(%v) = %v, wanted %v", parameter.name, resp.Greeting, parameter.want)
+		}
+	}
 }
