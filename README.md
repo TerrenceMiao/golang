@@ -166,38 +166,27 @@ Removes any dependencies the module might have accumulated that are no longer ne
 
 ```
 𝜆 go mod tidy
+go mod tidy
 warning: ignoring symlink /Users/terrence/Projects/golang/src/bazel-bin
 warning: ignoring symlink /Users/terrence/Projects/golang/src/bazel-out
 warning: ignoring symlink /Users/terrence/Projects/golang/src/bazel-src
 warning: ignoring symlink /Users/terrence/Projects/golang/src/bazel-testlogs
-go: finding module for package github.com/terrencemiao/golang/protos/hello
-go: finding module for package github.com/jessevdk/go-flags
-go: finding module for package github.com/terrencemiao/golang/protos/common
-go: finding module for package google.golang.org/grpc
-go: finding module for package github.com/stretchr/testify/require
-go: found github.com/jessevdk/go-flags in github.com/jessevdk/go-flags v1.5.0
-go: found google.golang.org/grpc in google.golang.org/grpc v1.39.0
-go: found github.com/stretchr/testify/require in github.com/stretchr/testify v1.7.0
-go: downloading golang.org/x/net v0.0.0-20200822124328-c89045814202
-go: downloading github.com/golang/protobuf v1.4.3
-go: downloading gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
-go: downloading google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
-go: downloading github.com/google/go-cmp v0.5.0
-go: downloading google.golang.org/protobuf v1.25.0
 ```
 
 Tag the project with a version number.
 
 ```
-𝜆 git tag -a v1.1.0 -m "Publish module version v1.1.0"
+𝜆 git tag -a v1.2.6 -m "Publish module version v1.2.6"
+```
 
-𝜆 git push origin v1.1.0
+```
+𝜆 git push origin v1.2.6
 Enumerating objects: 1, done.
 Counting objects: 100% (1/1), done.
 Writing objects: 100% (1/1), 829 bytes | 829.00 KiB/s, done.
 Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
 To https://github.com/terrencemiao/golang.git
- * [new tag]         v1.1.0 -> v1.1.0
+ * [new tag]         v1.2.6 -> v1.2.6
 ```
 
 Publish Golang module.
@@ -205,8 +194,8 @@ Publish Golang module.
 Golang packages are given lower case, single-word names; there should be no need for underscores or mixedCaps.
 
 ```
-𝜆 env GOPROXY=proxy.golang.org go list -m github.com/terrencemiao/golang@v1.1.0
-github.com/terrencemiao/golang v1.1.0
+𝜆 env GOPROXY=proxy.golang.org go list -m github.com/terrencemiao/golang@v1.2.6
+github.com/terrencemiao/golang v1.2.6
 ```
 
 Can find the published Golang module at _https://pkg.go.dev/github.com/terrencemiao/golang_
