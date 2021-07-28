@@ -1,5 +1,8 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+
 go_library(
     name = "hello_lib",
     srcs = ["main.go"],
@@ -19,9 +22,6 @@ go_binary(
     visibility = ["//visibility:public"],
 )
 
-#
-load("@io_bazel_rules_docker//go:image.bzl", "go_image")
-
 go_image(
     name = "base_image",
     goos = "linux",
@@ -36,8 +36,6 @@ go_image(
         "@org_golang_google_grpc//:go_default_library",
     ],
 )
-
-load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 
 container_image(
     name = "image",
