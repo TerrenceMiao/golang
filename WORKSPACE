@@ -38,6 +38,13 @@ go_repository(
     version = "v3.0.0-20210107192922-496545a6307b",
 )
 
+go_repository(
+    name = "com_github_vdemeester_k8s_pkg_credentialprovider",
+    importpath = "github.com/vdemeester/k8s-pkg-credentialprovider",
+    sum = "h1:7Ajl3rjeYoB5V47jPknnLbyxYlhMXTTJiQsye5aT7f0=",
+    version = "v1.21.0-1",
+)
+
 # Declare indirect dependencies and register toolchains
 go_rules_dependencies()
 
@@ -84,3 +91,25 @@ http_archive(
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 protobuf_deps()
+
+# Docker image
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "59d5b42ac315e7eadffa944e86e90c2990110a1c8075f1cd145f487e999d22b3",
+    strip_prefix = "rules_docker-0.17.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.17.0/rules_docker-v0.17.0.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//go:image.bzl",
+    _go_image_repos = "repositories",
+)
+
+_go_image_repos()

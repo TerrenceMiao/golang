@@ -18,3 +18,30 @@ go_binary(
     embed = [":hello_lib"],
     visibility = ["//visibility:public"],
 )
+
+#
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_image(
+    name = "base_image",
+    goos = "linux",
+    goarch = "amd64",
+    srcs = ["main.go"],
+    importpath = "github.com/terrencemiao/golang/services/hello",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//protos/hello",
+        "//services/hello/server",
+        "@com_github_jessevdk_go_flags//:go-flags",
+        "@org_golang_google_grpc//:go_default_library",
+    ],
+)
+
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+
+container_image(
+    name = "image",
+    base = ":base_image",
+    stamp = True,
+    visibility = ["//visibility:public"],
+)
