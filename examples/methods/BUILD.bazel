@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "methods_lib",
+    srcs = ["methods.go"],
+    importpath = "github.com/terrencemiao/golang/examples/methods",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "methods",
+    embed = [":methods_lib"],
+    visibility = ["//visibility:public"],
+)

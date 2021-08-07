@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "load-balancer_lib",
+    srcs = ["load-balancer.go"],
+    importpath = "github.com/terrencemiao/golang/examples/load-balancer",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "load-balancer",
+    embed = [":load-balancer_lib"],
+    visibility = ["//visibility:public"],
+)
